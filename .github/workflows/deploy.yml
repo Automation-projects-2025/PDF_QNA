@@ -2,8 +2,7 @@ name: Deploy to AWS
 
 on:
   push:
-    branches: 
-    - main  # Trigger the workflow on pushes to the main branch
+    branches: [main]  # Trigger the workflow on pushes to the main branch
 
 jobs:
   deploy:
