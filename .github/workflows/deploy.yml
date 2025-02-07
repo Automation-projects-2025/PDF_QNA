@@ -2,13 +2,15 @@ name: Deploy to AWS
 
 on:
   push:
-    branches: [main]  # Trigger the workflow on pushes to the main branch
+    branches: 
+    - main  # Trigger the workflow on pushes to the main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest  # Or another appropriate runner
 
     steps:
+      - uses: Checkout
       - uses: actions/checkout@v3  # Checkout your code
 
       - name: Set up Python
@@ -26,15 +28,10 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}  # Replace with your AWS access key ID secret
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # Replace with your AWS secret access key secret
-          aws-region: ${{ secrets.AWS_REGION }}  # Replace with your AWS region secret
+          aws-region: us-east-1  # Replace with your AWS region secret
 
-      - name: Deploy to AWS (Example - EC2, Elastic Beanstalk, etc.)
-        run: |
-          # Your AWS deployment commands here.  Examples:
-          # - For EC2: ssh your_ec2_instance "bash deploy.sh"
-          # - For Elastic Beanstalk: eb deploy
-          # - For other services:  Use the appropriate AWS CLI commands or deployment tools.
-          echo "Deploying to AWS..." # Replace with your actual deployment commands
+      - name: Deploy to AWS 
+        run: aws s3 sync . s3://demo-automation-2025 --delete
 
       - name: Print Groq API Key (for debugging)
         run: echo "${{ secrets.GROQ_API_KEY }}" # For debugging ONLY, REMOVE in production!
