@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout code  # More descriptive name
+        uses: actions/checkout@v3  # Correct indentation
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
