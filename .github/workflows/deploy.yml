@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest  # Or another appropriate runner
 
     steps:
-      - uses: Checkout
+      - name: Checkout
       - uses: actions/checkout@v3  # Checkout your code
 
       - name: Set up Python
